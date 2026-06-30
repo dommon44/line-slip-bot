@@ -78,7 +78,6 @@ def handle_image(event):
     "time": "HH:mm",
     "receiver": "",
     "memo": "",
-    "reference": ""
 }
 
 กฎ
@@ -87,8 +86,6 @@ def handle_image(event):
 - time ต้องเป็น HH:mm
 - receiver คือชื่อผู้รับ
 - memo คือข้อความบันทึก (ถ้าไม่มีให้เป็น "")
-- reference คือเลขอ้างอิงรายการ (Reference No.) บนสลิป SCB
-- ถ้าหา reference ไม่เจอ ให้เป็น ""
 
 ห้ามตอบข้อความอื่น
 """
@@ -117,7 +114,6 @@ def handle_image(event):
             "time",
             "receiver",
             "memo",
-            "reference"
         ]
 
         for key in required:
@@ -127,10 +123,9 @@ def handle_image(event):
 
         if ok:
             reply = f"""✅ บันทึกสำเร็จ
-    💰 {result['amount']} บาท
-    👤 {result['receiver']}
-    📝 {result['memo']}
-    🔖 Ref: {result['reference']}
+    💰 ยอดเงิน: {result['amount']} บาท
+    👤 ผู้รับ: {result['receiver']}
+    📝 บันทึก: {result['memo']}
     """
         else:
 
