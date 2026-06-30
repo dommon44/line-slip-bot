@@ -77,7 +77,7 @@ def handle_image(event):
     "date": "YYYY-MM-DD",
     "time": "HH:mm",
     "receiver": "",
-    "memo": "",
+    "memo": ""
 }
 
 กฎ
@@ -123,10 +123,10 @@ def handle_image(event):
 
         if ok:
             reply = f"""✅ บันทึกสำเร็จ
-    💰 ยอดเงิน: {result['amount']} บาท
-    👤 ผู้รับ: {result['receiver']}
-    📝 บันทึก: {result['memo']}
-    """
+💰 ยอดเงิน: {result['amount']} บาท
+👤 ผู้รับ: {result['receiver']}
+📝 บันทึก: {result['memo']}
+"""
         else:
 
             reply = "❌ เขียน Google Sheet ไม่สำเร็จ"
