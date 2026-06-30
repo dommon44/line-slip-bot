@@ -27,7 +27,7 @@ line_bot_api = LineBotApi(LINE_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_SECRET)
 
 genai.configure(api_key=GEMINI_KEY)
-model = genai.GenerativeModel("gemini-2.5-flash")
+model = genai.GenerativeModel("gemini-3.1-flash-lite")
 
 app = FastAPI()
 
