@@ -49,8 +49,11 @@ def save_to_google_sheet(data):
         print("SHEET RESPONSE:", response.status_code)
         print(response.text)
 
-        if response.ok:
+        result = response.json()
+
+        if result.get("success"):
             return True
+
 
         print("Apps Script Error:", response.text)
         return False
