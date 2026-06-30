@@ -43,7 +43,7 @@ def save_to_google_sheet(data):
         response = requests.post(
             GAS_URL,
             json=data,
-            timeout=20
+            timeout=60
         )
 
         print("SHEET RESPONSE:", response.status_code)
@@ -122,11 +122,12 @@ def handle_image(event):
         ok = save_to_google_sheet(result)
 
         if ok:
-            reply = f"""✅ บันทึกสำเร็จ
-💰 ยอดเงิน: {result['amount']} บาท
-👤 ผู้รับ: {result['receiver']}
-📝 บันทึก: {result['memo']}
-"""
+            reply = (
+    f"✅ บันทึกสำเร็จ\n"
+    f"💰 ยอดเงิน: {result['amount']} บาท\n"
+    f"👤 ผู้รับ: {result['receiver']}\n"
+    f"📝 บันทึก: {result['memo']}"
+)
         else:
 
             reply = "❌ เขียน Google Sheet ไม่สำเร็จ"
