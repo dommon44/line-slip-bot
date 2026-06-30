@@ -37,6 +37,8 @@ app = FastAPI()
 
 def save_to_google_sheet(data):
 
+    print("SEND DATA TO SHEET:", data)
+    
     response = requests.post(
         GAS_URL,
         json=data,
