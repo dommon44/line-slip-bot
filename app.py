@@ -44,6 +44,9 @@ def save_to_google_sheet(data):
         json=data,
         timeout=20
     )
+    print("SHEET RESPONSE:", response.status_code)
+    print(response.text)
+    
     if response.ok:
         return True
     print("Apps Script Error:", response.text)
