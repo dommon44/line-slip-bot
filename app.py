@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import MessageEvent, ImageMessage, TextSendMessage
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 import google.generativeai as genai
 
@@ -17,7 +17,7 @@ import google.generativeai as genai
 # -----------------------
 
 
-load_dotenv()
+# load_dotenv()
 LINE_ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
 LINE_SECRET = os.getenv("LINE_SECRET")
 GEMINI_KEY = os.getenv("GEMINI_KEY")
