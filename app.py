@@ -1,6 +1,10 @@
+from email.mime import image
 import io
 import os
 import json
+import time
+from tracemalloc import start
+from unittest import result
 import requests
 
 from PIL import Image
@@ -95,7 +99,10 @@ def handle_image(event):
 
         image = Image.open(io.BytesIO(message_content.content))
 
+        # จับเวลา Gemini
+        start = time.time()
         response = model.generate_content([prompt, image])
+        print(f"Gemini: {time.time() - start:.2f} sec")
 
         text = response.text.strip()
 
@@ -119,8 +126,11 @@ def handle_image(event):
         for key in required:
             result.setdefault(key, "")
 
+        # ก่อนบันทึก Google Sheet
+        start = time.time()
         ok = save_to_google_sheet(result)
-
+        print(f"Google Sheet: {time.time() - start:.2f} sec")
+        
         if ok:
             reply = (
     f"✅ บันทึกสำเร็จ\n"
@@ -129,10 +139,9 @@ def handle_image(event):
     f"📝 บันทึก: {result['memo']}"
 )
         else:
-
             reply = "❌ เขียน Google Sheet ไม่สำเร็จ"
-    except json.JSONDecodeError:
 
+    except json.JSONDecodeError:
         print("Gemini Response:", text)
         reply = "❌ Gemini ตอบข้อมูลไม่ถูกต้อง"
 
