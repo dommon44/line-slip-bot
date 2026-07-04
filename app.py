@@ -42,13 +42,21 @@ app = FastAPI()
 def save_to_google_sheet(data):
 
     print("SEND DATA TO SHEET:", data)
+    print("GAS_URL =", GAS_URL)
 
     try:
+        print("POST START")
+
         response = requests.post(
             GAS_URL,
             json=data,
             timeout=60
         )
+
+        print("POST END")
+
+        print("FINAL URL:", response.url)
+        print("REDIRECT:", response.history)
 
         print("SHEET RESPONSE:", response.status_code)
         print(response.text)
@@ -57,7 +65,6 @@ def save_to_google_sheet(data):
 
         if result.get("success"):
             return True
-
 
         print("Apps Script Error:", response.text)
         return False
