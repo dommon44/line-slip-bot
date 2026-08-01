@@ -165,7 +165,9 @@ def handle_image(event):
 # -----------------------
 # Webhook
 # -----------------------
-
+@app.get("/")
+async def home():
+    return {"status": "ok"}
 @app.post("/callback")
 async def callback(request: Request):
 
